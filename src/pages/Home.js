@@ -1,7 +1,11 @@
+import Filter from '../components/Filter';
+import ContactList from '../components/ContactList';
+
 const Home = () => {
   return (
-    <div className="container">
-      <h1>This is home</h1>
+    <div className="row">
+      <Filter />
+      <ContactList />
     </div>
   )
 }
