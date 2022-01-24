@@ -1,10 +1,24 @@
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const Contacts = () => {
   const params = useParams()
   const contacts = useSelector((state) => state.contacts)
-  const contact = contacts.find(c => c.id === params.id)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const idx = contacts.findIndex(c => c.id === params.id)
+  const contact = contacts[idx]
+
+  const deleteConfirmation = () => {
+    if (window.confirm('Are you sure ?')) {
+      contacts.splice(idx, 1)
+      dispatch({
+        type: 'SET_CONTACTS',
+        contacts
+      })
+      navigate("/", { replace: true })
+    }
+  }
 
   return (
     <div className="card">
@@ -12,15 +26,37 @@ const Contacts = () => {
         <h3>{contact.name}</h3>
         <hr />
         <div className="d-flex flex-row">
-          <div className="p-2" style={{ width: '150px' }}>
-            <img src={contact.picture} alt={contact.name} style={{ width: '100px' }} />
+          <div className="p-2" style={{ width: '170px' }}>
+            <img
+              src={contact.picture}
+              alt={contact.name}
+              className="img-thumbnail"
+              style={{ width: '150px' }} />
           </div>
-          <p>
-            {contact.email}<br />
-            {contact.phone}<br />
-            {contact.gender}<br />
-            {contact.nat}<br />
-          </p>
+          <table className="table w-auto">
+            <tbody>
+              <tr>
+                <td><b>Email</b></td><td>{contact.email}</td>
+              </tr>
+              <tr>
+                <td><b>Phone</b></td><td>{contact.phone}</td>
+              </tr>
+              <tr>
+                <td><b>Gender</b></td><td>{contact.gender}</td>
+              </tr>
+              <tr>
+                <td><b>Nationality</b></td><td>{contact.nat}</td>
+              </tr>
+              <tr>
+                <td colSpan="2">
+                  <button className='btn btn-sm btn-warning me-2'>Edit</button>
+                  <button
+                    className='btn btn-sm btn-danger'
+                    onClick={deleteConfirmation}>Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
