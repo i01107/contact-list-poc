@@ -19,7 +19,6 @@ const TableView = () => {
           <th>Bio</th>
           <th>Gender</th>
           <th>Nationality</th>
-          <th>Actions</th>
         </tr>
       </thead>
       <tbody>

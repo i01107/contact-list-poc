@@ -15,10 +15,6 @@ const TableRow = ({ contact }) => {
       </td>
       <td>{contact.gender}</td>
       <td>{contact.nat}</td>
-      <td>
-        <button className='btn btn-sm btn-warning me-2'>Edit</button>
-        <button className='btn btn-sm btn-danger'>Delete</button>
-      </td>
     </tr>
   )
 }
