@@ -1,16 +1,11 @@
 const TableRow = ({ contact }) => {
-  const getName = () => {
-    let { title, first, last } = contact.name
-    return [title, first, last].join(" ")
-  }
-
   return (
     <tr>
       <td>
-        <img src={contact.picture.medium} alt={getName()} />
+        <img src={contact.picture} alt={contact.name} />
       </td>
       <td>
-        <b>{getName()}</b><br />
+        <b>{contact.name}</b><br />
         {contact.email}<br />
         {contact.phone}<br />
       </td>
