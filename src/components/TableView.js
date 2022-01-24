@@ -1,25 +1,14 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import TableRow from './TableRow';
+import { fetchContacts } from '../store/actions';
 
 const TableView = () => {
   const contacts = useSelector((state) => state.contacts)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (contacts.length === 0) {
-      axios({
-        method: 'get',
-        url: 'https://randomuser.me/api/?results=25&inc=name,picture,email,phone,nat,gender'
-      })
-      .then(fetchedContacts => {
-        dispatch({
-          type: "SET_CONTACTS",
-          contacts: fetchedContacts.data.results
-        })
-      })
-    }
+    dispatch(fetchContacts())
   }, [])
 
   return (

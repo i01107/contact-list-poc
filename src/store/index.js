@@ -1,4 +1,5 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 const initialState = {
   contacts: []
@@ -13,4 +14,4 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-export default createStore(reducer)
+export default createStore(reducer, applyMiddleware(thunk))
