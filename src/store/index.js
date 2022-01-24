@@ -12,6 +12,10 @@ const reducer = (state = initialState, action) => {
       return {...state, contacts: action.contacts}
     case "SET_VIEW":
       return {...state, tabular: action.tabular}
+    case "ADD_CONTACT":
+      let newContacts = [ ...state.contacts ]
+      newContacts.unshift(action.contact)
+      return {...state, contacts: newContacts }
     default:
       return state
   }

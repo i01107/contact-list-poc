@@ -8,7 +8,7 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <NavLink to="/" className="nav-link">Add New Contact</NavLink>
+              <NavLink to="/contacts/new" className="nav-link">Add New Contact</NavLink>
             </li>
           </ul>
         </div>

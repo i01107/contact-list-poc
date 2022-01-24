@@ -19,7 +19,7 @@ export const fetchContacts = () => {
     if (state.contacts.length === 0) {
       axios({
         method: 'get',
-        url: 'https://randomuser.me/api/?results=25&inc=name,picture,email,phone,nat,gender'
+        url: 'https://randomuser.me/api/?results=25&nat=us,dk,fr,gb&inc=name,picture,email,phone,nat,gender'
       })
       .then(fetchedContacts => {
         let contacts = contactsConverter(fetchedContacts.data.results)

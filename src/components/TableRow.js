@@ -5,7 +5,7 @@ const TableRow = ({ contact }) => {
     <tr>
       <td>
         <Link to={`/contacts/${contact.id}`}>
-          <img src={contact.picture} alt={contact.name} />
+          <img src={contact.picture} alt={contact.name} style={{ width: '100px' }} />
         </Link>
       </td>
       <td>
