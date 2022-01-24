@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 const initialState = {
-  contacts: [1]
+  contacts: []
 }
 
 const reducer = (state = initialState, action) => {
