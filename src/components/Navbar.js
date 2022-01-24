@@ -1,12 +1,14 @@
+import { NavLink } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
-        <a className="navbar-brand" href="/">Contact List</a>
+        <NavLink to="/" className="navbar-brand">Contact List</NavLink>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" href="/">Add New Contact</a>
+              <NavLink to="/" className="nav-link">Add New Contact</NavLink>
             </li>
           </ul>
         </div>

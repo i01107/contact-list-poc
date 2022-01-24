@@ -1,8 +1,10 @@
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid'
 
 const contactsConverter = (raw_contacts) => {
   return raw_contacts.map(contact => {
     let newContact = {...contact}
+    newContact.id = uuidv4()
     let { title, first, last } = newContact.name
     newContact.name = [title, first, last].join(" ")
     newContact.picture = newContact.picture.medium

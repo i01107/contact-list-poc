@@ -1,11 +1,15 @@
+import { Link } from "react-router-dom";
+
 const TableRow = ({ contact }) => {
   return (
     <tr>
       <td>
-        <img src={contact.picture} alt={contact.name} />
+        <Link to={`/contacts/${contact.id}`}>
+          <img src={contact.picture} alt={contact.name} />
+        </Link>
       </td>
       <td>
-        <b>{contact.name}</b><br />
+        <b><Link to={`/contacts/${contact.id}`}>{contact.name}</Link></b><br />
         {contact.email}<br />
         {contact.phone}<br />
       </td>
