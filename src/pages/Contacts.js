@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const Contacts = () => {
@@ -49,7 +49,7 @@ const Contacts = () => {
               </tr>
               <tr>
                 <td colSpan="2">
-                  <button className='btn btn-sm btn-warning me-2'>Edit</button>
+                  <NavLink to={`/contacts/edit/${contact.id}`} className='btn btn-sm btn-warning me-2'>Edit</NavLink>
                   <button
                     className='btn btn-sm btn-danger'
                     onClick={deleteConfirmation}>Delete</button>

@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { updateContacts } from "../store/actions";
 
 const errorLib = {
   "required": "This field is required",
@@ -15,17 +16,31 @@ const ShowError = ({ type }) => {
   )
 }
 
-const Form = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm()
+const Form = ({ contact, idx }) => {
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const submitHandler = contact => {
-    contact.id = uuidv4()
+    if (!idx) {
+      contact.id = uuidv4()
+    }
+    
     dispatch({
-      type: 'ADD_CONTACT',
-      contact
+      type: idx || idx === 0 ? 'UPDATE_CONTACT' : 'ADD_CONTACT',
+      payload: { contact, idx }
     })
+
     navigate("/")
+  }
+
+  if (idx || idx === 0) {
+    console.log(contact)
+    setValue("name", contact.name)
+    setValue("email", contact.email)
+    setValue("phone", contact.phone)
+    setValue("gender", contact.gender)
+    setValue("nat", contact.nat)
+    setValue("picture", contact.picture)
   }
 
   return (

@@ -7,14 +7,19 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
+  let newContacts = [ ...state.contacts ]
   switch (action.type) {
     case "SET_CONTACTS":
       return {...state, contacts: action.contacts}
     case "SET_VIEW":
       return {...state, tabular: action.tabular}
     case "ADD_CONTACT":
-      let newContacts = [ ...state.contacts ]
-      newContacts.unshift(action.contact)
+      console.log("masuk add")
+      newContacts.unshift(action.payload.contact)
+      return {...state, contacts: newContacts }
+    case "UPDATE_CONTACT":
+      console.log("masuk update")
+      newContacts[action.payload.idx] = action.payload.contact
       return {...state, contacts: newContacts }
     default:
       return state
