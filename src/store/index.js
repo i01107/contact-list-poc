@@ -14,7 +14,6 @@ const reducer = (state = initialState, action) => {
     case "SET_VIEW":
       return {...state, tabular: action.tabular}
     case "ADD_CONTACT":
-      console.log("masuk add")
       newContacts.unshift(action.payload.contact)
       return {...state, contacts: newContacts }
     case "UPDATE_CONTACT":
