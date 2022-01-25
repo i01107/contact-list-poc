@@ -9,7 +9,7 @@ const TableView = () => {
 
   useEffect(() => {
     dispatch(fetchContacts())
-  }, [])
+  }, [dispatch])
 
   return (
     <table className='table table-striped'>
