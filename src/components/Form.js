@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { updateContacts } from "../store/actions";
 
 const errorLib = {
   "required": "This field is required",
