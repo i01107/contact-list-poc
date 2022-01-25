@@ -15,14 +15,12 @@ const ShowError = ({ type }) => {
   )
 }
 
-const Form = ({ contact, idx }) => {
+const Form = ({ currentContact, idx }) => {
   const { register, handleSubmit, formState: { errors }, setValue } = useForm()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const submitHandler = contact => {
-    if (!idx) {
-      contact.id = uuidv4()
-    }
+    contact.id = currentContact ? currentContact.id : uuidv4()
     
     dispatch({
       type: idx || idx === 0 ? 'UPDATE_CONTACT' : 'ADD_CONTACT',
@@ -33,13 +31,12 @@ const Form = ({ contact, idx }) => {
   }
 
   if (idx || idx === 0) {
-    console.log(contact)
-    setValue("name", contact.name)
-    setValue("email", contact.email)
-    setValue("phone", contact.phone)
-    setValue("gender", contact.gender)
-    setValue("nat", contact.nat)
-    setValue("picture", contact.picture)
+    setValue("name", currentContact.name)
+    setValue("email", currentContact.email)
+    setValue("phone", currentContact.phone)
+    setValue("gender", currentContact.gender)
+    setValue("nat", currentContact.nat)
+    setValue("picture", currentContact.picture)
   }
 
   return (

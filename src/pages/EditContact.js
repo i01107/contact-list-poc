@@ -12,7 +12,7 @@ const EditContact = () => {
     <>
       <h2>Edit Contact</h2>
       <hr />
-      <Form contact={contact} idx={idx} />
+      <Form currentContact={contact} idx={idx} />
     </>
   )
 }

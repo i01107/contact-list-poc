@@ -18,8 +18,8 @@ const reducer = (state = initialState, action) => {
       newContacts.unshift(action.payload.contact)
       return {...state, contacts: newContacts }
     case "UPDATE_CONTACT":
-      console.log("masuk update")
-      newContacts[action.payload.idx] = action.payload.contact
+      newContacts.splice(action.payload.idx, 1)
+      newContacts.unshift(action.payload.contact)
       return {...state, contacts: newContacts }
     default:
       return state
