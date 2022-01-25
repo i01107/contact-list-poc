@@ -3,11 +3,15 @@ import thunk from 'redux-thunk';
 
 const initialState = {
   contacts: [],
-  tabular: true
+  tabular: true,
+  filter: {
+    gender: false
+  }
 }
 
 const reducer = (state = initialState, action) => {
   let newContacts = [ ...state.contacts ]
+  let newFilter = { ...state.filter }
   switch (action.type) {
     case "SET_CONTACTS":
       return {...state, contacts: action.contacts}
@@ -20,6 +24,9 @@ const reducer = (state = initialState, action) => {
       newContacts.splice(action.payload.idx, 1)
       newContacts.unshift(action.payload.contact)
       return {...state, contacts: newContacts }
+    case "UPDATE_FILTER_GENDER":
+      newFilter.gender = action.gender
+      return {...state, filter: newFilter}
     default:
       return state
   }

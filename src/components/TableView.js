@@ -9,7 +9,7 @@ const TableView = () => {
 
   useEffect(() => {
     dispatch(fetchContacts())
-  }, [dispatch])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <table className='table table-striped'>

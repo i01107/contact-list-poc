@@ -1,7 +1,22 @@
-import { useDispatch } from "react-redux";
+import ViewToggler from "./ViewToggler";
+import GenderFilter from "./GenderFilter";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const Filter = () => {
-  const dispatch = useDispatch()
+  const filter = useSelector((state) => state.filter)
+  const [filterCount, setFilterCount] = useState(0)
+
+  useEffect(() => {
+    let usedFilterCount = 0
+    let arr = ["gender"]
+    arr.forEach(item => {
+      if (filter[item]) {
+        usedFilterCount++
+      }
+    })
+    setFilterCount(usedFilterCount)
+  }, [filter])
 
   return (
     <div className="col-md-3">
@@ -9,30 +24,10 @@ const Filter = () => {
         <div className="card-body">
           View
           <hr />
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="viewToggler"
-              id="tabular"
-              onChange={() => dispatch({ type: 'SET_VIEW', tabular: true })} />
-            <label className="form-check-label" htmlFor="tabular">
-              Tabular view
-            </label>
-          </div>
-          <div className="form-check mb-5">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="viewToggler"
-              id="card"
-              onChange={() => dispatch({ type: 'SET_VIEW', tabular: false })} />
-            <label className="form-check-label" htmlFor="card">
-              Card view
-            </label>
-          </div>
-          Filter
+          <ViewToggler />
+          Filter<span className="badge rounded-pill bg-primary ms-2">{filterCount} applied</span>
           <hr />
+          <GenderFilter />
         </div>
       </div>
     </div>
