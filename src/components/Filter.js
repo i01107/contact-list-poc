@@ -9,7 +9,7 @@ const Filter = () => {
 
   useEffect(() => {
     let usedFilterCount = 0
-    let arr = ["gender"]
+    let arr = ["gender", "nationality"]
     arr.forEach(item => {
       if (filter[item].length > 0) {
         usedFilterCount++
@@ -19,6 +19,7 @@ const Filter = () => {
   }, [filter])
 
   let genderInitialState = ["male", "female"]
+  let nationalityInitialState = ["DK", "FR", "GB", "US"]
 
   return (
     <div className="col-md-3">
@@ -30,6 +31,7 @@ const Filter = () => {
           Filter<span className="badge rounded-pill bg-primary ms-2">{filterCount} applied</span>
           <hr />
           <ItemFilter arrFilter={['Gender', genderInitialState]} />
+          <ItemFilter arrFilter={['Nationality', nationalityInitialState]} />
         </div>
       </div>
     </div>

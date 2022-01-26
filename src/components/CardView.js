@@ -1,13 +1,28 @@
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Card from "./Card";
-import { useSelector } from "react-redux";
 
 const CardView = () => {
-  const contacts = useSelector((state) => state.contacts)
+  const { contacts, filter } = useSelector((state) => state)
+  const [renderedContacts, setRenderedContacts] = useState(contacts)
+
+  useEffect(() => {
+    let filteredContacts = [...contacts]
+    if (filter.gender.length > 0) {
+      filteredContacts = filteredContacts.filter(contact => filter.gender.findIndex(g => g === contact.gender) >= 0)
+    }
+
+    if (filter.nationality.length > 0) {
+      filteredContacts = filteredContacts.filter(contact => filter.nationality.findIndex(g => g === contact.nat) >= 0)
+    }
+
+    setRenderedContacts(filteredContacts)
+  }, [filter, contacts]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="row">
       {
-        contacts.map((contact, idx) => <Card key={idx} contact={contact} />)
+        renderedContacts.map((contact, idx) => <Card key={idx} contact={contact} />)
       }
     </div>
   )

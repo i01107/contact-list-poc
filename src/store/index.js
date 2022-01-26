@@ -5,7 +5,8 @@ const initialState = {
   contacts: [],
   tabular: true,
   filter: {
-    gender: []
+    gender: [],
+    nationality: []
   }
 }
 
@@ -28,7 +29,7 @@ const reducer = (state = initialState, action) => {
       newFilter.gender = action.updatedState
       return {...state, filter: newFilter}
     case "UPDATE_FILTER_NATIONALITY":
-      newFilter.nationality = action.nationality
+      newFilter.nationality = action.updatedState
       return {...state, filter: newFilter}
     default:
       return state

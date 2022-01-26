@@ -13,16 +13,17 @@ const TableView = () => {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    let updated = false
+    let filteredContacts = [...contacts]
     if (filter.gender.length > 0) {
-      setRenderedContacts(contacts.filter(contact => filter.gender.findIndex(g => g === contact.gender) >= 0))
-      updated = true
+      filteredContacts = filteredContacts.filter(contact => filter.gender.findIndex(g => g === contact.gender) >= 0)
     }
-    
-    if (!updated) {
-      setRenderedContacts(contacts)
+
+    if (filter.nationality.length > 0) {
+      filteredContacts = filteredContacts.filter(contact => filter.nationality.findIndex(g => g === contact.nat) >= 0)
     }
-  }, [filter])
+
+    setRenderedContacts(filteredContacts)
+  }, [filter, contacts]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <table className='table table-striped'>

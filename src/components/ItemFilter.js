@@ -20,7 +20,7 @@ const ItemFilter = ({ arrFilter }) => {
   }
 
   return (
-    <div className="mb-5">
+    <div className="mb-3">
       <b>{arrFilter[0]}</b>
       {
         arrFilter[1].map((item, idx) => (
